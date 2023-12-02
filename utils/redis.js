@@ -9,17 +9,21 @@ class RedisClient {
       console.error(`Redis client not connected to the server: ${error}`);
     });
   }
+
   isAlive() {
     return this.client.connected;
   }
+
   async get(key) {
     const value = await this.getAsync(key);
     return value;
   }
+
   async set(key, val, duration) {
     this.client.set(key, val);
     this.client.expire(key, duration);
   }
+
   async del(key) {
     this.client.del(key);
   }
