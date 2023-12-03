@@ -24,7 +24,7 @@ class UsersController {
 
     return response
       .status(201)
-      .send({ id: result.ObjectId, email: email });
+      .send({ id: new ObjectId(), email: email });
   }
 }
 
