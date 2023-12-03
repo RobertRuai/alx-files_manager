@@ -8,10 +8,10 @@ class DBClient {
     const url = `mongodb://${host}:${port}`;
 
     MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
-      if (!err) {
-        this.db = client.db(database);
-      } else {
+      if (err) {
         this.db = false;
+      } else {
+        this.db = client.db(database);
       }
     });
   }
@@ -22,11 +22,11 @@ class DBClient {
   }
 
   async nbUsers() {
-    return this.db.collection('users').countDocuments();
+    return this.db.collection('users').countDocuments({});
   }
 
   async nbFiles() {
-    return this.db.collection('files').countDocuments();
+    return this.db.collection('files').countDocuments({});
   }
 }
 
